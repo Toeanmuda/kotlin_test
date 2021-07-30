@@ -5,10 +5,10 @@ import com.example.entity.*
 import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
-    fun getListPaging(page: Int): Flow<ResultState<List<ArticlesItem>>>
-    suspend fun getListPaging2(page: Int): List<ArticlesItem>
-    suspend fun insertAll(list: List<ArticlesItem>)
-    /*fun getAllDAta():PagingSource<Int, ArticlesItem>*/
+    fun getListPaging(page: Int): Flow<ResultState<List<ArticlesItem2>>>
+    suspend fun getListPaging2(page: Int): List<ArticlesItem2>
+    suspend fun insertAll(list: List<ArticlesItem2>)
+    fun getAllDAta():PagingSource<Int, ArticlesItem2>
     suspend fun clearArticle()
 
     suspend fun insertAllRemoteKey(remoteKey: List<RemoteKeys>)

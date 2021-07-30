@@ -3,18 +3,18 @@ package com.example.domain.source
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.domain.MainRepository
-import com.example.entity.ArticlesItem
+import com.example.entity.ArticlesItem2
 import com.example.entity.ResultState
 import kotlinx.coroutines.flow.collect
 
-class MainPagingSource(private val repository: MainRepository) : PagingSource<Int, ArticlesItem>() {
+class MainPagingSource(private val repository: MainRepository) : PagingSource<Int, ArticlesItem2>() {
 
 
     override suspend fun load(
         params: LoadParams<Int>
-    ): LoadResult<Int, ArticlesItem> {
+    ): LoadResult<Int, ArticlesItem2> {
         return try {
-            val mutableList = mutableListOf<ArticlesItem>()
+            val mutableList = mutableListOf<ArticlesItem2>()
             val nextPageNumber = params.key ?: 1
 //            val PrevPageNumber = if (nextPageNumber == 1) null else nextPageNumber - 1
             val repository = repository.getListPaging(nextPageNumber)
@@ -54,7 +54,7 @@ class MainPagingSource(private val repository: MainRepository) : PagingSource<In
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ArticlesItem>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ArticlesItem2>): Int? {
         return null
     }
 }

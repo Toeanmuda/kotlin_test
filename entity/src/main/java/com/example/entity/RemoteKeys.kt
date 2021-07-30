@@ -23,10 +23,7 @@ import com.squareup.moshi.Json
 @Entity(tableName = "remote_keys")
 data class RemoteKeys(
     @PrimaryKey
-    @Json(name="publishedAt")
     val publishedAt: String,
-    @Json(name="prevKey")
     val prevKey: Int?,
-    @Json(name="nextKey")
     val nextKey: Int?
 )

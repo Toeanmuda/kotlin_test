@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.entity.ArticlesItem
+import com.example.entity.ArticlesItem2
 import com.example.test_kotlin.databinding.ListItemBinding
 
-class ListItemAdapterPaging(private val inItemClick: (ArticlesItem) -> Unit) :
-    PagingDataAdapter<ArticlesItem, ListItemAdapterPaging.ListItemViewHolder>(DiffCallback)  {
+class ListItemAdapterPaging(private val inItemClick: (ArticlesItem2) -> Unit) :
+    PagingDataAdapter<ArticlesItem2, ListItemAdapterPaging.ListItemViewHolder>(DiffCallback)  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
         return ListItemViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -31,7 +31,7 @@ class ListItemAdapterPaging(private val inItemClick: (ArticlesItem) -> Unit) :
     class ListItemViewHolder(private var bindin: ListItemBinding) :
         RecyclerView.ViewHolder(bindin.root) {
 
-        fun bind(result: ArticlesItem) {
+        fun bind(result: ArticlesItem2) {
             bindin.apply {
                 originalTitle.text = result.title
                 overview.text = result.description
@@ -40,12 +40,12 @@ class ListItemAdapterPaging(private val inItemClick: (ArticlesItem) -> Unit) :
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<ArticlesItem>() {
-            override fun areItemsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<ArticlesItem2>() {
+            override fun areItemsTheSame(oldItem: ArticlesItem2, newItem: ArticlesItem2): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+            override fun areContentsTheSame(oldItem: ArticlesItem2, newItem: ArticlesItem2): Boolean {
                 return oldItem == newItem
             }
 

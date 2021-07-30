@@ -48,8 +48,9 @@ dependencies {
     implementation rootProject.ext.main.constraintLayout
     implementation rootProject.ext.architectureComponents.livedataKtx
     implementation rootProject.ext.architectureComponents.roomKtx
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt rootProject.ext.architectureComponents.roomCompiler
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
 
 
 
@@ -74,10 +75,8 @@ dependencies {
     implementation rootProject.ext.misc.koinAndroidxViewmodel
     implementation rootProject.ext.misc.koinAndroidxFragment*/
     implementation rootProject.ext.misc.androidxWork
-    implementation 'com.google.code.gson:gson:2.8.7'
     implementation rootProject.ext.misc.zetetic
     implementation rootProject.ext.misc.androidxSqlite
-
     implementation rootProject.ext.misc.hiltAndroid
     kapt rootProject.ext.misc.hiltAndroidCompiler
 

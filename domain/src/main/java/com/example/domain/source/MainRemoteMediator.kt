@@ -20,9 +20,8 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import androidx.room.withTransaction
 import com.example.domain.MainRepository
-import com.example.entity.ArticlesItem
+import com.example.entity.ArticlesItem2
 import com.example.entity.RemoteKeys
 import retrofit2.HttpException
 import java.io.IOException
@@ -33,7 +32,7 @@ private const val GITHUB_STARTING_PAGE_INDEX = 1
 @OptIn(ExperimentalPagingApi::class)
 class MainRemoteMediator(
     private val mainRepository: MainRepository
-) : RemoteMediator<Int, ArticlesItem>() {
+) : RemoteMediator<Int, ArticlesItem2>() {
 
     override suspend fun initialize(): InitializeAction {
         // Launch remote refresh as soon as paging starts and do not trigger remote prepend or
@@ -45,7 +44,7 @@ class MainRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, ArticlesItem>
+        state: PagingState<Int, ArticlesItem2>
     ): MediatorResult {
 
         val page = when (loadType) {
@@ -109,7 +108,7 @@ class MainRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ArticlesItem>): RemoteKeys? {
+    private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ArticlesItem2>): RemoteKeys? {
         // Get the last page that was retrieved, that contained items.
         // From that last page, get the last item
         return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
@@ -119,7 +118,7 @@ class MainRemoteMediator(
             }
     }
 
-    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ArticlesItem>): RemoteKeys? {
+    private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ArticlesItem2>): RemoteKeys? {
         // Get the first page that was retrieved, that contained items.
         // From that first page, get the first item
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
@@ -130,7 +129,7 @@ class MainRemoteMediator(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, ArticlesItem>
+        state: PagingState<Int, ArticlesItem2>
     ): RemoteKeys? {
         // The paging library is trying to load data after the anchor position
         // Get the item closest to the anchor position

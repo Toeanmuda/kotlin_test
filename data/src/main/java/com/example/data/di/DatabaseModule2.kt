@@ -1,14 +1,8 @@
 import android.content.Context
-import androidx.room.ProvidedTypeConverter
 import androidx.room.Room
-import androidx.room.TypeConverter
 import com.example.data.local.InventoryDao
 import com.example.data.local.InventoryRoomDatabase
 import com.example.data.local.RemoteKeyDao
-import com.example.entity.ArticlesItem
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +14,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object DatabaseModule {
+object DatabaseModule2 {
 
     @Singleton // untuk sekali instance
     @Provides  // untuk khusus inject library
@@ -28,20 +22,19 @@ object DatabaseModule {
         val passphrase: ByteArray = SQLiteDatabase.getBytes("cpn".toCharArray())
         val factory = SupportFactory(passphrase)
         return Room.databaseBuilder(context, InventoryRoomDatabase::class.java, "item_database")
-           // .openHelperFactory(factory)
+           .openHelperFactory(factory)
             .build()
     }
 
     @Singleton // untuk sekali instance
     @Provides  // untuk khusus inject library
-    fun provideDao(database: InventoryRoomDatabase): InventoryDao {
+    fun provideInventoryDao(database: InventoryRoomDatabase): InventoryDao {
         return database.inventoryDao()
     }
 
     @Singleton // untuk sekali instance
     @Provides  // untuk khusus inject library
-    fun provideDao2(database: InventoryRoomDatabase): RemoteKeyDao {
+    fun provideRemoteKeyDao(database: InventoryRoomDatabase): RemoteKeyDao {
         return database.remotekeyDao()
     }
-
 }

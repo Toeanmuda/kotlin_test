@@ -41,9 +41,10 @@ dependencies {
     implementation rootProject.ext.main.googleMaterial
     implementation rootProject.ext.main.constraintLayout
     implementation rootProject.ext.architectureComponents.livedataKtx
-    implementation rootProject.ext.architectureComponents.roomKtx
     implementation rootProject.ext.architectureComponents.paging
+    implementation rootProject.ext.architectureComponents.roomKtx
     kapt rootProject.ext.architectureComponents.roomCompiler
+
 
 
     implementation rootProject.ext.misc.coroutinesCore
@@ -59,7 +60,6 @@ dependencies {
     implementation rootProject.ext.architectureComponents.navigationFragment
     implementation rootProject.ext.misc.hiltAndroid
     kapt rootProject.ext.misc.hiltAndroidCompiler
-    implementation 'com.google.code.gson:gson:2.8.7'
 
     implementation rootProject.ext.misc.zetetic
     implementation rootProject.ext.misc.androidxSqlite

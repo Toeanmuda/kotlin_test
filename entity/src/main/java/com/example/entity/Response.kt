@@ -1,18 +1,12 @@
 package com.example.entity
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
-import java.text.NumberFormat
 
 data class Response(
 
 	@Json(name="totalResults")
 	val totalResults: Int? = null,
-
-	@Json(name="articles")
-	val articles: List<ArticlesItem>,
-
+	val articles: List<ArticlesItem2> = emptyList(),
 	@Json(name="status")
 	val status: String? = null
 )
