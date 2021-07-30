@@ -20,6 +20,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.room.withTransaction
 import com.example.domain.MainRepository
 import com.example.entity.ArticlesItem2
 import com.example.entity.RemoteKeys
@@ -86,19 +87,20 @@ class MainRemoteMediator(
             val apiResponse = mainRepository.getListPaging2(page)
             val repos = apiResponse
             val endOfPaginationReached = repos.isEmpty()
-
-            // clear all tables in the database
-            if (loadType == LoadType.REFRESH) {
-                mainRepository.clearRemoteKeys()
-                mainRepository.clearArticle()
+            mainRepository.getDatabase().withTransaction{
+                // clear all tables in the database
+                if (loadType == LoadType.REFRESH) {
+                    mainRepository.clearRemoteKeys()
+                    mainRepository.clearArticle()
+                }
+                val prevKey = if (page == GITHUB_STARTING_PAGE_INDEX) null else page - 1
+                val nextKey = if (endOfPaginationReached) null else page + 1
+                val keys = repos.map { it ->
+                    RemoteKeys(publishedAt = it.publishedAt, prevKey = prevKey, nextKey = nextKey)
+                }
+                mainRepository.insertAllRemoteKey(keys)
+                mainRepository.insertAll(repos)
             }
-            val prevKey = if (page == GITHUB_STARTING_PAGE_INDEX) null else page - 1
-            val nextKey = if (endOfPaginationReached) null else page + 1
-            val keys = repos.map { it ->
-                RemoteKeys(publishedAt = it.publishedAt, prevKey = prevKey, nextKey = nextKey)
-            }
-            mainRepository.insertAllRemoteKey(keys)
-            mainRepository.insertAll(repos)
 
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: IOException) {

@@ -1,8 +1,11 @@
 package com.example.domain
 
 import androidx.paging.PagingSource
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.example.entity.*
 import kotlinx.coroutines.flow.Flow
+
 
 interface MainRepository {
     fun getListPaging(page: Int): Flow<ResultState<List<ArticlesItem2>>>
@@ -14,4 +17,6 @@ interface MainRepository {
     suspend fun insertAllRemoteKey(remoteKey: List<RemoteKeys>)
     suspend fun remoteKeysRepoId(publishedAt: String):RemoteKeys?
     suspend fun clearRemoteKeys()
+
+    fun  getDatabase(): RoomDatabase
 }

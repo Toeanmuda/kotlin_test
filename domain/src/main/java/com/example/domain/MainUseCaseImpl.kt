@@ -28,15 +28,6 @@ class MainUseCaseImpl @Inject constructor(private val repository: MainRepository
             remoteMediator = MainRemoteMediator(repository),
             pagingSourceFactory = pagingSourceFactory
         ).flow
-
-        return Pager(
-            // Configure how data is loaded by passing additional properties to
-            // PagingConfig, such as prefetchDistance.
-            PagingConfig(pageSize = 20)
-        ) {
-            MainPagingSource(repository)
-        }.flow
-
     }
 
     companion object {

@@ -10,10 +10,10 @@ interface InventoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(repos: List<ArticlesItem2>)
 
-    @Query("SELECT * FROM ArticlesItem")
+    @Query("SELECT * FROM Articles_Item")
     fun getAllDAta(): PagingSource<Int, ArticlesItem2>
 
 
-    @Query("DELETE FROM ArticlesItem")
+    @Query("DELETE FROM Articles_Item")
     suspend fun clearArticle()
 }

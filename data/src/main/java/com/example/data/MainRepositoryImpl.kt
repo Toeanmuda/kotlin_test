@@ -56,4 +56,8 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun clearRemoteKeys() {
         inventoryRoomDatabase.remotekeyDao().clearRemoteKeys()
     }
+
+    override fun getDatabase(): InventoryRoomDatabase {
+        return inventoryRoomDatabase
+    }
 }

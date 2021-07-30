@@ -14,6 +14,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_kotlin.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -52,7 +53,13 @@ class FirstFragment : Fragment() {
             recyclerView.adapter = listItemAdapterPaging
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
+    /*    viewLifecycleOwner.lifecycleScope.launch {
+            mainViewModel.getListPagingOfflinEOnline.collectLatest { it ->
+                listItemAdapterPaging.submitData(it)
+            };
+
+        }
+    */ viewLifecycleOwner.lifecycleScope.launch {
             mainViewModel.getListPaging.observe(
                 viewLifecycleOwner,
                 { allowPLayingMoview ->
