@@ -9,8 +9,8 @@ interface RemoteKeyDao {
     suspend fun insertAll(remoteKey: List<RemoteKeys>)
 
     @Query("SELECT * FROM remote_keys WHERE publishedAt = :publishedAt")
-    fun remoteKeysRepoId(publishedAt: String): RemoteKeys
+    suspend fun remoteKeysRepoId(publishedAt: String): RemoteKeys
 
     @Query("DELETE FROM remote_keys")
-    fun clearRemoteKeys()
+    suspend fun clearRemoteKeys()
 }

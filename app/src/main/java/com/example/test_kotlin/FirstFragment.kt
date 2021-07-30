@@ -53,20 +53,20 @@ class FirstFragment : Fragment() {
             recyclerView.adapter = listItemAdapterPaging
         }
 
-    /*    viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             mainViewModel.getListPagingOfflinEOnline.collectLatest { it ->
                 listItemAdapterPaging.submitData(it)
             };
 
         }
-    */ viewLifecycleOwner.lifecycleScope.launch {
+     /*viewLifecycleOwner.lifecycleScope.launch {
             mainViewModel.getListPaging.observe(
                 viewLifecycleOwner,
                 { allowPLayingMoview ->
                     listItemAdapterPaging.submitData(lifecycle, allowPLayingMoview)
                 });
 
-        }
+        }*/
     }
 
     override fun onDestroyView() {
